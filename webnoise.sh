@@ -8,21 +8,21 @@ while true; do
     echo ""
     case ${n: -1} in
         1)
-    end=st;;
+        [ $n -eq 11 ] && end=th || end=st;;
         2)
-    end=nd;;
+        [ $n -eq 12 ] && end=th || end=nd;;
         3)
-    end=rd;;
+        [ $n -eq 13 ] && end=th || end=rd;;
         *)
-    3nd=th;;
+    end=th;;
 esac
     echo ${n}${end} iteration
     for i in $(seq 1 $(tput cols));do printf -;done
     for i in ${sites[@]}; do
         echo Requesting $i
         curl --silent $i
-        sleep 3
+        sleep 0.1
     done
     let n++
-    sleep 10
+    sleep 0.1
 done
