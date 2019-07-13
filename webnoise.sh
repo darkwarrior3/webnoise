@@ -18,11 +18,11 @@ while true; do
 esac
     echo ${n}${end} iteration
     for i in $(seq 1 $(tput cols));do printf -;done
-    for i in ${sites[@]}; do
+    for i in $(cat hosts.txt); do
         echo Requesting $i
         curl --silent $i
-        sleep 0.1
+        sleep 1
     done
     let n++
-    sleep 0.1
+    sleep 60 
 done
