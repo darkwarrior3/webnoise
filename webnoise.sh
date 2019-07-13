@@ -20,7 +20,9 @@ esac
     for i in $(seq 1 $(tput cols));do printf -;done
     for i in $(cat hosts.txt); do
         echo Requesting $i
-        curl --silent $i
+        pattern="^$i"
+        curl -s $i > /dev/null
+        [ $? -ne 0 ] && sed -i "/${pattern}/d" hosts.txt
         sleep 1
     done
     let n++
